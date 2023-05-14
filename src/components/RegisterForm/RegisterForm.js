@@ -1,51 +1,37 @@
 import React from "react";
-import { ErrorMessage, Form, Formik, Field } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 
-import { validationSchema } from "../../utils/validationSchema";
-import { Box, Button, Typography } from "@mui/material";
-import styled from "styled-components";
+import { registerValidationSchema } from "../../utils/validationSchema";
 
-const Container = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  width: 400px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 15px;
-`;
-
-const Text = styled(Typography)``;
-
-const FormValue = styled(Field)`
-  width: 300px;
-`;
-
-const SubmitButton = styled(Button)`
-  width: 300px;
-`;
+import register from "../../redux/operations/register";
+import { useDispatch } from "react-redux";
+import {
+  Container,
+  FormValue,
+  SubmitButton,
+  Text,
+} from "../../utils/authCommonStyles";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+
   return (
     <Formik
-      initialValues={{ username: "", password: "", email: "" }}
-      validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+      initialValues={{ name: "", email: "", password: "" }}
+      validationSchema={registerValidationSchema}
+      onSubmit={(values) => {
+        dispatch(register(values));
       }}
     >
       <Form>
         <Container>
           <Text sx={{ fontSize: 32 }}>Register</Text>
-          <FormValue
-            name="username"
-            type="text"
-            placeholder="Your username..."
-          />
-          <ErrorMessage name="username" />
+
+          <FormValue name="name" type="text" placeholder="Your name..." />
+          <ErrorMessage name="name" />
+
+          <FormValue name="email" type="email" placeholder="Your email..." />
+          <ErrorMessage name="email" />
 
           <FormValue
             name="password"
@@ -53,9 +39,6 @@ const RegisterForm = () => {
             placeholder="Your password..."
           />
           <ErrorMessage name="password" />
-
-          <FormValue name="email" type="email" placeholder="Your email..." />
-          <ErrorMessage name="email" />
 
           <SubmitButton type="submit" variant="contained">
             Submit
