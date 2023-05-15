@@ -9,8 +9,8 @@ import {
   Container,
   FormValue,
   SubmitButton,
-  Text,
 } from "../../utils/authCommonStyles";
+import { FormLabel, Typography } from "@mui/material";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -20,18 +20,31 @@ const LoginForm = () => {
       initialValues={{ email: "", password: "" }}
       validationSchema={loginValidationSchema}
       onSubmit={(values) => {
-        console.log(values);
         dispatch(login(values));
       }}
     >
       <Form>
         <Container>
-          <Text sx={{ fontSize: 32 }}>Log in</Text>
+          <Typography sx={{ fontSize: 32, mt: "20px", mb: "20px" }}>
+            LOG IN
+          </Typography>
 
-          <FormValue name="email" type="email" placeholder="Your email..." />
+          <FormLabel htmlFor="email" sx={{ mb: "5px" }} required>
+            Email
+          </FormLabel>
+          <FormValue
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Your email..."
+          />
           <ErrorMessage name="email" />
 
+          <FormLabel htmlFor="password" sx={{ mb: "5px" }} required>
+            Password
+          </FormLabel>
           <FormValue
+            id="password"
             name="password"
             type="password"
             placeholder="Your password..."

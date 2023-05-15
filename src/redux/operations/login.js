@@ -1,10 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+
 import { setToken } from "../../utils/setToken";
+
+import { instanceAuth } from "./register";
 
 const login = createAsyncThunk("auth/login", async (credentials, thunkAPI) => {
   try {
-    const response = await axios.post("/users/login", credentials);
+    const response = await instanceAuth.post("/users/login", credentials);
+
     const { token } = response.data;
 
     setToken(token);

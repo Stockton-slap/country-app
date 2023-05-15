@@ -9,8 +9,8 @@ import {
   Container,
   FormValue,
   SubmitButton,
-  Text,
 } from "../../utils/authCommonStyles";
+import { FormLabel, Typography } from "@mui/material";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -25,15 +25,37 @@ const RegisterForm = () => {
     >
       <Form>
         <Container>
-          <Text sx={{ fontSize: 32 }}>Register</Text>
+          <Typography sx={{ fontSize: 32, mt: "20px", mb: "20px" }}>
+            REGISTER
+          </Typography>
 
-          <FormValue name="name" type="text" placeholder="Your name..." />
+          <FormLabel htmlFor="name" sx={{ mb: "5px" }} required>
+            Username
+          </FormLabel>
+          <FormValue
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Your username..."
+          />
           <ErrorMessage name="name" />
 
-          <FormValue name="email" type="email" placeholder="Your email..." />
+          <FormLabel htmlFor="email" sx={{ mb: "5px" }} required>
+            Email
+          </FormLabel>
+          <FormValue
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Your email..."
+          />
           <ErrorMessage name="email" />
 
+          <FormLabel htmlFor="password" sx={{ mb: "5px" }} required>
+            Password
+          </FormLabel>
           <FormValue
+            id="password"
             name="password"
             type="password"
             placeholder="Your password..."
