@@ -30,7 +30,7 @@ function App() {
         />
 
         <Route
-          path="main"
+          path="countries"
           element={
             <PrivateRoute>
               <Main />

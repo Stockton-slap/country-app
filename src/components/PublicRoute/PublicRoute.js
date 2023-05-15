@@ -6,7 +6,7 @@ const PublicRoute = ({ children, restricted = false }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const shouldRedirect = restricted && isLoggedIn;
 
-  return shouldRedirect ? <Navigate to="/main" /> : children;
+  return shouldRedirect ? <Navigate to="/countries" /> : children;
 };
 
 export default PublicRoute;

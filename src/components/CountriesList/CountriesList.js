@@ -6,6 +6,8 @@ import getCountries from "../../redux/operations/getCountries";
 
 import CountriesItem from "../CountriesItem";
 
+import { List } from "@mui/material";
+
 const Countries = () => {
   const dispatch = useDispatch();
   const countries = useSelector(selectCountries);
@@ -15,11 +17,18 @@ const Countries = () => {
   }, [dispatch]);
 
   return (
-    <ul>
+    <List
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        gap: "25px",
+      }}
+    >
       {countries.map((country, i) => (
         <CountriesItem country={country} key={i} />
       ))}
-    </ul>
+    </List>
   );
 };
 
