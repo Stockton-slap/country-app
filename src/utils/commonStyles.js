@@ -28,3 +28,13 @@ export const SubmitButton = styled(Button)`
   width: 350px;
   height: 50px;
 `;
+
+export const Title = styled.h2`
+  margin-bottom: 20px;
+  color: #000;
+`;
+
+export const Text = styled.p`
+  margin-bottom: 10px;
+  color: #000;
+`;

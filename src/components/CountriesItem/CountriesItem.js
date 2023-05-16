@@ -3,15 +3,26 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { Box, ListItem } from "@mui/material";
+import { Text, Title } from "../../utils/commonStyles";
 
-const Title = styled.h2`
-  margin-bottom: 20px;
-  color: #000;
-`;
+const Card = styled(ListItem)`
+  background-color: gray;
+  width: 300px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: unset;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: transform 300ms ease;
 
-const Text = styled.p`
-  margin-bottom: 10px;
-  color: #000;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:not(:hover) {
+    transform: scale(1);
+  }
 `;
 
 const CountriesItem = ({ country }) => {
@@ -24,20 +35,7 @@ const CountriesItem = ({ country }) => {
   } = country;
 
   return (
-    <ListItem
-      sx={{
-        backgroundColor: "gray",
-        width: "300px",
-        borderRadius: "10px",
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-        alignItems: "unset",
-        boxShadow:
-          "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px",
-      }}
-      disablePadding={true}
-    >
+    <Card disablePadding={true}>
       <Link to={`/countries/${common}`}>
         <img
           src={svg}
@@ -45,10 +43,10 @@ const CountriesItem = ({ country }) => {
           style={{
             width: "100%",
             height: "150px",
-            // objectFit: "cover",
+            objectFit: "cover",
           }}
         />
-        <Box sx={{ padding: "30px" }}>
+        <Box sx={{ p: "30px" }}>
           <Title>{common}</Title>
           <Text>
             <b>Population:</b> {population.toLocaleString()}
@@ -61,7 +59,7 @@ const CountriesItem = ({ country }) => {
           </Text>
         </Box>
       </Link>
-    </ListItem>
+    </Card>
   );
 };
 

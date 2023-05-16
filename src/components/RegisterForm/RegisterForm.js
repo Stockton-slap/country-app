@@ -5,11 +5,7 @@ import { registerValidationSchema } from "../../utils/validationSchema";
 
 import register from "../../redux/operations/register";
 import { useDispatch } from "react-redux";
-import {
-  Container,
-  FormValue,
-  SubmitButton,
-} from "../../utils/authCommonStyles";
+import { Container, FormValue, SubmitButton } from "../../utils/commonStyles";
 import { FormLabel, Typography } from "@mui/material";
 
 const RegisterForm = () => {

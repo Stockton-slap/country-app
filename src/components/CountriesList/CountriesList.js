@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { v4 as uuidv4 } from "uuid";
+
 import { selectCountries } from "../../redux/selectors";
 import getCountries from "../../redux/operations/getCountries";
 
@@ -22,11 +24,11 @@ const Countries = () => {
         display: "flex",
         justifyContent: "center",
         flexWrap: "wrap",
-        gap: "25px",
+        gap: "40px",
       }}
     >
-      {countries.map((country, i) => (
-        <CountriesItem country={country} key={i} />
+      {countries.map((country) => (
+        <CountriesItem country={country} key={uuidv4()} />
       ))}
     </List>
   );

@@ -5,11 +5,7 @@ import { loginValidationSchema } from "../../utils/validationSchema";
 
 import login from "../../redux/operations/login";
 import { useDispatch } from "react-redux";
-import {
-  Container,
-  FormValue,
-  SubmitButton,
-} from "../../utils/authCommonStyles";
+import { Container, FormValue, SubmitButton } from "../../utils/commonStyles";
 import { FormLabel, Typography } from "@mui/material";
 
 const LoginForm = () => {
