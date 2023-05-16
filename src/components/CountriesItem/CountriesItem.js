@@ -1,6 +1,8 @@
-import { Box, ListItem, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+
 import styled from "styled-components";
+
+import { Box, ListItem } from "@mui/material";
 
 const Title = styled.h2`
   margin-bottom: 20px;
@@ -15,14 +17,10 @@ const Text = styled.p`
 const CountriesItem = ({ country }) => {
   const {
     name: { common },
-    borders,
     capital,
     continents,
-    currencies,
-    flags: { png, alt },
-    languages,
+    flags: { svg, alt },
     population,
-    area,
   } = country;
 
   return (
@@ -34,18 +32,20 @@ const CountriesItem = ({ country }) => {
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
+        alignItems: "unset",
         boxShadow:
           "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px",
       }}
-      disablePadding="true"
+      disablePadding={true}
     >
-      <Link>
+      <Link to={`/countries/${common}`}>
         <img
-          src={png}
+          src={svg}
           alt={alt}
           style={{
-            width: "300px",
+            width: "100%",
             height: "150px",
+            // objectFit: "cover",
           }}
         />
         <Box sx={{ padding: "30px" }}>

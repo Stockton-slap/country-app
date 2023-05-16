@@ -7,3 +7,4 @@ export const selectIsLoading = (state) => state.auth.isLoading;
 export const selectIsError = (state) => state.auth.isError;
 
 export const selectCountries = (state) => state.countries.countries;
+export const selectCurrentCountry = (state) => state.countries.currentCountry;

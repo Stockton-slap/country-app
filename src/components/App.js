@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Main from "../pages/Main";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
+import Details from "../pages/Details";
 
 function App() {
   return (
@@ -34,6 +35,15 @@ function App() {
           element={
             <PrivateRoute>
               <Main />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="countries/:countryId"
+          element={
+            <PrivateRoute>
+              <Details />
             </PrivateRoute>
           }
         />
