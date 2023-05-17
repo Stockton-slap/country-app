@@ -8,7 +8,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
-  isError: false,
+  // isError: false,
 };
 
 const authSlice = createSlice({
@@ -19,6 +19,7 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
     },
     [register.pending](state, action) {
       state.isLoading = true;
@@ -31,6 +32,7 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
     },
     [login.pending](state, action) {
       state.isLoading = true;

@@ -1,13 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import { selectIsLoggedIn } from "../../redux/selectors";
 import { useSelector } from "react-redux";
 
-import { Box, Container, Typography } from "@mui/material";
-import { Language } from "@mui/icons-material";
+import { Box, Container } from "@mui/material";
 
 import LoggedInBar from "../LoggedInBar";
-import LoggedOutBar from "../LoggedOutBar/LoggedOutBar";
+import LoggedOutBar from "../LoggedOutBar";
+import Logo from "../Logo";
 
 const SharedLayout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -26,13 +26,7 @@ const SharedLayout = () => {
           p: "0 50px",
         }}
       >
-        <Link to="/">
-          <Box display="flex" alignItems="center">
-            <Language sx={{ width: 50, height: 50 }} />
-            <Typography sx={{ ml: 2 }}>COUNTRY APP</Typography>
-          </Box>
-        </Link>
-
+        <Logo />
         {isLoggedIn ? <LoggedInBar /> : <LoggedOutBar />}
       </Box>
       <Outlet />

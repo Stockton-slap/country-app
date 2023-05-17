@@ -14,6 +14,7 @@ import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./slices/authSlice";
 import { countryReducer } from "./slices/countrySlice";
+import { filterReducer } from "./slices/filterSlice";
 
 const persistConfig = {
   key: "auth",
@@ -24,6 +25,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
   countries: countryReducer,
+  filter: filterReducer,
 });
 
 const store = configureStore({

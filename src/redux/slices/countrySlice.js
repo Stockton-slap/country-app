@@ -5,6 +5,8 @@ import getCountryDetails from "../operations/getCountryDetails";
 const initialState = {
   countries: [],
   currentCountry: "",
+  isLoading: false,
+  // isError: false,
 };
 
 const countrySlice = createSlice({
@@ -13,15 +15,25 @@ const countrySlice = createSlice({
   extraReducers: {
     [getCountries.fulfilled](state, action) {
       state.countries = action.payload;
+      state.isLoading = false;
     },
-    [getCountries.pending](state, action) {},
-    [getCountries.rejected](state, action) {},
+    [getCountries.pending](state, action) {
+      state.isLoading = true;
+    },
+    [getCountries.rejected](state, action) {
+      state.isLoading = false;
+    },
 
     [getCountryDetails.fulfilled](state, action) {
       state.currentCountry = action.payload;
+      state.isLoading = false;
     },
-    [getCountryDetails.pending](state, action) {},
-    [getCountryDetails.rejected](state, action) {},
+    [getCountryDetails.pending](state, action) {
+      state.isLoading = true;
+    },
+    [getCountryDetails.rejected](state, action) {
+      state.isLoading = false;
+    },
   },
 });
 

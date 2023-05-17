@@ -1,15 +1,13 @@
 import { AddShoppingCart } from "@mui/icons-material";
-import { Badge, Box, Button, TextField } from "@mui/material";
+import { Badge, Box, Button } from "@mui/material";
+
+import Filter from "../Filter/Filter";
 
 const LoggedInBar = () => {
   return (
     <>
-      <TextField
-        type="text"
-        variant="outlined"
-        placeholder="Find the country..."
-        size="small"
-      />
+      <Filter />
+
       <Box display="flex" alignItems="center">
         <AddShoppingCart sx={{ width: 30, height: 30, mr: "10px" }} />
         <Badge

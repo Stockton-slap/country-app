@@ -4,12 +4,14 @@ import { ErrorMessage, Form, Formik } from "formik";
 import { registerValidationSchema } from "../../utils/validationSchema";
 
 import register from "../../redux/operations/register";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, FormValue, SubmitButton } from "../../utils/commonStyles";
 import { FormLabel, Typography } from "@mui/material";
+import { selectIsAuthLoading } from "../../redux/selectors";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsAuthLoading);
 
   return (
     <Formik

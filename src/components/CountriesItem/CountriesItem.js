@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -26,24 +26,25 @@ const Card = styled(ListItem)`
 `;
 
 const CountriesItem = ({ country }) => {
+  const location = useLocation();
+
   const {
     name: { common },
     capital,
     continents,
-    flags: { svg, alt },
+    flags: { png, alt },
     population,
   } = country;
 
   return (
     <Card disablePadding={true}>
-      <Link to={`/countries/${common}`}>
+      <Link to={`/countries/${common}`} state={{ from: location }}>
         <img
-          src={svg}
+          src={png}
           alt={alt}
           style={{
             width: "100%",
             height: "150px",
-            objectFit: "cover",
           }}
         />
         <Box sx={{ p: "30px" }}>
