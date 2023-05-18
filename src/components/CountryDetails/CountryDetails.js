@@ -11,14 +11,8 @@ import {
   selectCurrentCountry,
 } from "../../redux/selectors";
 
-import {
-  Box,
-  Button,
-  List,
-  ListItem,
-  ListItemButton,
-  Typography,
-} from "@mui/material";
+import { Box, Button, List, ListItem, ListItemButton } from "@mui/material";
+import { KeyboardBackspace } from "@mui/icons-material";
 
 import { Text, Title } from "../../utils/commonStyles";
 import Loader from "../Loader/Loader";
@@ -73,7 +67,7 @@ const CountryDetails = () => {
     >
       <Link to={location.state.from} style={{ display: "inline-block" }}>
         <Button variant="contained" sx={{ mb: "80px", width: "150px" }}>
-          Back
+          <KeyboardBackspace sx={{ mr: "20px" }} /> Back
         </Button>
       </Link>
       <Box
