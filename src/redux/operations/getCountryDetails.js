@@ -9,7 +9,7 @@ const getCountryDetails = createAsyncThunk(
 
       return response.data[0];
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
