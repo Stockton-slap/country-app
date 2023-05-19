@@ -23,26 +23,23 @@ const Countries = () => {
   const isLoading = useSelector(selectAreCountriesLoading);
   const filter = useSelector(selectFilter);
   const trimmedFilter = filter.trim();
-  const sortedCountries = [...countries].sort((a, b) => {
-    return a.name.common.localeCompare(b.name.common);
-  });
 
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
 
-  const filteredCountries = useMemo(
-    () =>
-      sortedCountries.filter(({ name: { common: countryName } }) =>
-        countryName.toLowerCase().startsWith(trimmedFilter.toLowerCase())
-      ),
-    [sortedCountries, trimmedFilter]
-  );
+  const filteredCountries = useMemo(() => {
+    const sortedCountries = [...countries].sort((a, b) => {
+      return a.name.common.localeCompare(b.name.common);
+    });
+
+    return sortedCountries.filter(({ name: { common: countryName } }) =>
+      countryName.toLowerCase().startsWith(trimmedFilter.toLowerCase())
+    );
+  }, [countries, trimmedFilter]);
 
   return isLoading ? (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <Loader />
-    </Box>
+    <Loader />
   ) : filteredCountries.length === 0 ? (
     <CountryNotFound />
   ) : (

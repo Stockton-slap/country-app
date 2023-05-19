@@ -1,11 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
-import { setToken } from "../../utils/setToken";
-
-export const instanceAuth = axios.create({
-  baseURL: "https://connections-api.herokuapp.com/",
-});
+import { setToken } from "../../utils/axiosConfig";
+import { instanceAuth } from "../../utils/axiosConfig";
 
 const register = createAsyncThunk(
   "auth/register",

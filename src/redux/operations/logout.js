@@ -1,12 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-// import { instanceAuth } from "./register";
+import { instanceAuth } from "../../utils/axiosConfig";
 
 const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    const response = await axios.post(
-      "https://connections-api.herokuapp.com/users/logout"
-    );
+    const response = await instanceAuth.post("/users/logout");
 
     return response.data;
   } catch (error) {

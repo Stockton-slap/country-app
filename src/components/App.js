@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import getCurrentUser from "../redux/operations/getCurrentUser";
@@ -12,13 +12,24 @@ import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import Details from "../pages/Details";
 import Home from "../pages/Home";
+import Loader from "./Loader/Loader";
+import { Box } from "@mui/material";
 
 function App() {
   const dispatch = useDispatch();
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    dispatch(getCurrentUser());
+    dispatch(getCurrentUser()).then(() => setIsReady(true));
   }, [dispatch]);
+
+  if (!isReady) {
+    return (
+      <Box sx={{ height: "100vh" }}>
+        <Loader />
+      </Box>
+    );
+  }
 
   return (
     <Routes>
@@ -26,7 +37,7 @@ function App() {
         <Route
           index
           element={
-            <PublicRoute>
+            <PublicRoute restricted>
               <Home />
             </PublicRoute>
           }

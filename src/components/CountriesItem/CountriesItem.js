@@ -2,11 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 
 import styled from "styled-components";
 
-import { Box, ListItem } from "@mui/material";
+import { Box } from "@mui/material";
 import { Text, Title } from "../../utils/commonStyles";
 
-const Card = styled(ListItem)`
-  background-color: gray;
+const Card = styled.li`
+  background-color: #907;
   width: 300px;
   border-radius: 10px;
   display: flex;

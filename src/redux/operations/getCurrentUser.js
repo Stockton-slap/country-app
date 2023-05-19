@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { setToken } from "../../utils/setToken";
-// import { instanceAuth } from "./register";
-import axios from "axios";
+import { setToken } from "../../utils/axiosConfig";
+import { instanceAuth } from "../../utils/axiosConfig";
 
 const getCurrentUser = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
   try {
@@ -11,9 +10,9 @@ const getCurrentUser = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
       return thunkAPI.rejectWithValue();
     }
 
-    setToken(persistedToken);
+    await setToken(persistedToken);
 
-    const response = await axios.get(
+    const response = await instanceAuth.get(
       "https://connections-api.herokuapp.com/users/current"
     );
 

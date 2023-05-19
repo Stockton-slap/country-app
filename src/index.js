@@ -8,6 +8,9 @@ import App from "./components/App";
 import { GlobalStyle } from "./utils/GlobalStyles";
 
 import store, { persistor } from "./redux/store";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,6 +19,7 @@ root.render(
       <BrowserRouter>
         <Provider store={store}>
           <App />
+          <ToastContainer />
         </Provider>
         <GlobalStyle />
       </BrowserRouter>

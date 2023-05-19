@@ -29,11 +29,7 @@ const CountryDetails = () => {
   }, [countryId, dispatch]);
 
   if (!currentCountry) {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Loader />
-      </Box>
-    );
+    return <Loader />;
   }
 
   const {
@@ -42,7 +38,7 @@ const CountryDetails = () => {
     continents,
     currencies,
     name: { common, official },
-    flags: { png, alt },
+    flags: { svg, alt },
     languages,
     population,
     area,
@@ -50,12 +46,12 @@ const CountryDetails = () => {
 
   const languagesList = Object.values(languages).map((language) => language);
 
-  const currency = Object.values(currencies).map((currency) => currency.name);
+  const currency = currencies
+    ? Object.values(currencies).map((currency) => currency.name)
+    : "-";
 
   return isLoading ? (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <Loader />
-    </Box>
+    <Loader />
   ) : (
     <Box
       sx={{
@@ -76,7 +72,7 @@ const CountryDetails = () => {
           gap: "calc(35px + 5vw)",
         }}
       >
-        <img src={png} alt={alt} width="500px" height="300px" />
+        <img src={svg} alt={alt} width="500px" height="100%" />
         <Box sx={{ p: "20px" }}>
           <Title>{common}</Title>
           <Box sx={{ display: "flex", gap: "30px", mb: "20px" }}>
