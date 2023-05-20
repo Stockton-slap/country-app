@@ -43,7 +43,7 @@ const Countries = () => {
 
   const endCountriesOffset = countriesOffset + countriesPerPage;
 
-  const currentItems = filteredCountries.slice(
+  const currentCountries = filteredCountries.slice(
     countriesOffset,
     endCountriesOffset
   );
@@ -53,6 +53,8 @@ const Countries = () => {
   const handlePageClick = (e) => {
     const pageNumber = e.selected;
 
+    console.log(pageNumber);
+
     const newCountriesOffset =
       (pageNumber * countriesPerPage) % filteredCountries.length;
 
@@ -61,10 +63,10 @@ const Countries = () => {
 
   return isLoading ? (
     <Loader />
-  ) : currentItems.length === 0 ? (
+  ) : currentCountries.length === 0 ? (
     <CountryNotFound />
   ) : (
-    <>
+    <section style={{ padding: "0 50px", position: "relative" }}>
       <List
         sx={{
           display: "flex",
@@ -74,12 +76,12 @@ const Countries = () => {
           mb: "80px",
         }}
       >
-        {currentItems.map((country) => (
+        {currentCountries.map((country) => (
           <CountriesItem country={country} key={uuidv4()} />
         ))}
       </List>
       <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
-    </>
+    </section>
   );
 };
 

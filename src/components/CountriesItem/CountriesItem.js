@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import { Text, Title } from "../../utils/commonStyles";
 
 const Card = styled.li`
-  background-color: #907;
+  background-color: #fff;
   width: 300px;
   border-radius: 10px;
   display: flex;

@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
             sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background-color: #d3d3d3; 
+        background-color: #e3e3e3; 
     }
 
     h1,

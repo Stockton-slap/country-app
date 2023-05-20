@@ -24,6 +24,7 @@ const SharedLayout = () => {
           height: "100px",
           mb: "80px",
           p: "0 50px",
+          backgroundColor: "#fff",
         }}
       >
         <Logo />
