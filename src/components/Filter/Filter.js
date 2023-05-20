@@ -24,6 +24,7 @@ const Filter = () => {
       size="small"
       value={value}
       onChange={handleChange}
+      sx={{ width: "300px" }}
     />
   );
 };

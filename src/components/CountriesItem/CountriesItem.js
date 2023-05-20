@@ -45,6 +45,7 @@ const CountriesItem = ({ country }) => {
           style={{
             width: "100%",
             height: "150px",
+            borderBottom: "1px solid grey",
           }}
         />
         <Box sx={{ p: "30px" }}>

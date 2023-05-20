@@ -2,18 +2,21 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
+import { Box } from "@mui/material";
+
 import getCurrentUser from "../redux/operations/getCurrentUser";
 
 import SharedLayout from "./SharedLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Main from "../pages/Main";
-import PublicRoute from "./PublicRoute";
-import PrivateRoute from "./PrivateRoute";
 import Details from "../pages/Details";
 import Home from "../pages/Home";
-import Loader from "./Loader/Loader";
-import { Box } from "@mui/material";
+import Cart from "../pages/Cart";
+
+import PublicRoute from "./PublicRoute";
+import PrivateRoute from "./PrivateRoute";
+import Loader from "./Loader";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,6 +78,15 @@ function App() {
           element={
             <PrivateRoute>
               <Details />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="cart"
+          element={
+            <PrivateRoute>
+              <Cart />
             </PrivateRoute>
           }
         />
