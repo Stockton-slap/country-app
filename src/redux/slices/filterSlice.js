@@ -1,19 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = "";
+const initialState = { filter: "", isFilterVisible: true };
 
 const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
     updateFilter(state, action) {
-      state = action.payload;
+      state.filter = action.payload;
+    },
 
-      return action.payload;
+    showFilter(state, action) {
+      state.isFilterVisible = action.payload;
     },
   },
 });
 
-export const { updateFilter } = filterSlice.actions;
+export const { updateFilter, showFilter } = filterSlice.actions;
 
 export const filterReducer = filterSlice.reducer;

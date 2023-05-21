@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -11,17 +11,16 @@ import {
   selectCurrentCountry,
 } from "../../redux/selectors";
 
-import { Box, Button, List, ListItem, ListItemButton } from "@mui/material";
-import { KeyboardBackspace } from "@mui/icons-material";
+import { Box, List, ListItem, ListItemButton } from "@mui/material";
 
 import { Text, Title } from "../../utils/commonStyles";
 import Loader from "../Loader/Loader";
+import BackButton from "../BackButton/";
 
 const CountryDetails = () => {
   const { countryId } = useParams();
   const dispatch = useDispatch();
   const currentCountry = useSelector(selectCurrentCountry);
-  const location = useLocation();
   const isLoading = useSelector(selectAreCountriesLoading);
 
   useEffect(() => {
@@ -61,11 +60,8 @@ const CountryDetails = () => {
         margin: "0 auto",
       }}
     >
-      <Link to={location.state.from} style={{ display: "inline-block" }}>
-        <Button variant="contained" sx={{ mb: "80px", width: "150px" }}>
-          <KeyboardBackspace sx={{ mr: "20px" }} /> Back
-        </Button>
-      </Link>
+      <BackButton />
+
       <Box
         sx={{
           display: "flex",
