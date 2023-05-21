@@ -4,12 +4,15 @@ import { ErrorMessage, Form, Formik } from "formik";
 import { loginValidationSchema } from "../../utils/validationSchema";
 
 import login from "../../redux/operations/login";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, FormValue, SubmitButton } from "../../utils/commonStyles";
 import { FormLabel, Typography } from "@mui/material";
+import Loader from "../Loader";
+import { selectIsAuthLoading } from "../../redux/selectors";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsAuthLoading);
 
   return (
     <Formik
@@ -48,7 +51,7 @@ const LoginForm = () => {
           <ErrorMessage name="password" />
 
           <SubmitButton type="submit" variant="contained">
-            Submit
+            {isLoading ? <Loader /> : "Submit"}
           </SubmitButton>
         </Container>
       </Form>

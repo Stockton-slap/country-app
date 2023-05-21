@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, FormValue, SubmitButton } from "../../utils/commonStyles";
 import { FormLabel, Typography } from "@mui/material";
 import { selectIsAuthLoading } from "../../redux/selectors";
+import Loader from "../Loader";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const RegisterForm = () => {
           <ErrorMessage name="password" />
 
           <SubmitButton type="submit" variant="contained">
-            Submit
+            {isLoading ? <Loader /> : "Submit"}
           </SubmitButton>
         </Container>
       </Form>
