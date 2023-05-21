@@ -1,22 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { showFilter } from "../../redux/slices/filterSlice";
-
 import { Box, Button } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
 import { KeyboardBackspace } from "@mui/icons-material";
-import { selectCurrentCountry } from "../../redux/selectors";
+import { useNavigate } from "react-router-dom";
 
 const CartItems = () => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-
-  const currentCountry = useSelector(selectCurrentCountry);
-  const countryName = currentCountry?.name?.common || "/";
-
-  useEffect(() => {
-    dispatch(showFilter(false));
-  }, [dispatch]);
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -27,17 +14,13 @@ const CartItems = () => {
         margin: "0 auto",
       }}
     >
-      <Link
-        to={{
-          pathname: `/countries/${countryName}`,
-          state: { from: location.pathname },
-        }}
-        style={{ display: "inline-block" }}
+      <Button
+        variant="contained"
+        sx={{ mb: "80px", width: "150px" }}
+        onClick={() => navigate(-1)}
       >
-        <Button variant="contained" sx={{ mb: "80px", width: "150px" }}>
-          <KeyboardBackspace sx={{ mr: "20px" }} /> Back
-        </Button>
-      </Link>
+        <KeyboardBackspace sx={{ mr: "20px" }} /> Back
+      </Button>
     </Box>
   );
 };

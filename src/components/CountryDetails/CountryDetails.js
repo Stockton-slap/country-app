@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -22,8 +22,7 @@ const CountryDetails = () => {
   const dispatch = useDispatch();
   const currentCountry = useSelector(selectCurrentCountry);
   const isLoading = useSelector(selectAreCountriesLoading);
-  const location = useLocation();
-  const previousPage = location.state?.from || "/countries";
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getCountryDetails(countryId));
@@ -62,11 +61,13 @@ const CountryDetails = () => {
         margin: "0 auto",
       }}
     >
-      <Link to={previousPage} style={{ display: "inline-block" }}>
-        <Button variant="contained" sx={{ mb: "80px", width: "150px" }}>
-          <KeyboardBackspace sx={{ mr: "20px" }} /> Back
-        </Button>
-      </Link>
+      <Button
+        variant="contained"
+        sx={{ mb: "80px", width: "150px" }}
+        onClick={() => navigate(-1)}
+      >
+        <KeyboardBackspace sx={{ mr: "20px" }} /> Back
+      </Button>
 
       <Box
         sx={{

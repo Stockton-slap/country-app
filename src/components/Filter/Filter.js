@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 
 import { updateFilter } from "../../redux/slices/filterSlice";
 
@@ -14,18 +14,23 @@ const Filter = () => {
 
     setValue(value);
 
-    dispatch(updateFilter(value));
+    dispatch(updateFilter(value.trim()));
   };
+
   return (
-    <TextField
-      type="text"
-      variant="outlined"
-      placeholder="Find the country..."
-      size="small"
-      value={value}
-      onChange={handleChange}
-      sx={{ width: "300px" }}
-    />
+    <Box sx={{ display: "flex", justifyContent: "center", mb: "40px" }}>
+      <TextField
+        type="text"
+        variant="outlined"
+        placeholder="Find the country..."
+        size="small"
+        value={value}
+        onChange={handleChange}
+        sx={{
+          width: "300px",
+        }}
+      />
+    </Box>
   );
 };
 

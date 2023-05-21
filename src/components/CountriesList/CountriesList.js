@@ -11,9 +11,10 @@ import {
 import getCountries from "../../redux/operations/getCountries";
 
 import CountriesItem from "../CountriesItem";
+import Filter from "../Filter";
 
 import { List } from "@mui/material";
-import Loader from "../Loader/Loader";
+import Loader from "../Loader";
 
 import CountryNotFound from "../CountryNotFound";
 import Pagination from "../Pagination";
@@ -59,27 +60,32 @@ const Countries = () => {
     setCountriesOffset(newCountriesOffset);
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : currentCountries.length === 0 ? (
-    <CountryNotFound />
-  ) : (
-    <section style={{ padding: "0 50px", position: "relative" }}>
-      <List
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          gap: "40px",
-          mb: "80px",
-        }}
-      >
-        {currentCountries.map((country) => (
-          <CountriesItem country={country} key={uuidv4()} />
-        ))}
-      </List>
-      <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
-    </section>
+  return (
+    <>
+      <Filter />
+      {isLoading ? (
+        <Loader />
+      ) : currentCountries.length === 0 ? (
+        <CountryNotFound />
+      ) : (
+        <section style={{ padding: "0 50px", position: "relative" }}>
+          <List
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "40px",
+              mb: "80px",
+            }}
+          >
+            {currentCountries.map((country) => (
+              <CountriesItem country={country} key={uuidv4()} />
+            ))}
+          </List>
+          <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+        </section>
+      )}
+    </>
   );
 };
 

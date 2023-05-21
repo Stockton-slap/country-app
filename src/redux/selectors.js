@@ -10,5 +10,4 @@ export const selectCountries = (state) => state.countries.countries;
 export const selectCurrentCountry = (state) => state.countries.currentCountry;
 export const selectAreCountriesLoading = (state) => state.countries.isLoading;
 
-export const selectFilter = (state) => state.filter.filter;
-export const selectShowFilter = (state) => state.filter.isFilterVisible;
+export const selectFilter = (state) => state.filter;
