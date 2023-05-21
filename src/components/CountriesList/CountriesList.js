@@ -53,8 +53,6 @@ const Countries = () => {
   const handlePageClick = (e) => {
     const pageNumber = e.selected;
 
-    console.log(pageNumber);
-
     const newCountriesOffset =
       (pageNumber * countriesPerPage) % filteredCountries.length;
 

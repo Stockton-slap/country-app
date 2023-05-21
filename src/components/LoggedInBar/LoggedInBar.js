@@ -12,7 +12,6 @@ import Filter from "../Filter";
 const LoggedInBar = () => {
   const dispatch = useDispatch();
   const isShowFilter = useSelector(selectShowFilter);
-  const location = useLocation();
 
   const handleLogoutClick = () => {
     dispatch(logout());
@@ -24,11 +23,7 @@ const LoggedInBar = () => {
 
       <Box display="flex" gap="40px">
         <Box>
-          <Link
-            to="/cart"
-            state={{ from: location }}
-            style={{ display: "flex", alignItems: "center" }}
-          >
+          <Link to="/cart" style={{ display: "flex", alignItems: "center" }}>
             <AddShoppingCart
               sx={{ width: 30, height: 30, mr: "10px", color: "#000" }}
             />
