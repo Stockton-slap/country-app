@@ -1,5 +1,5 @@
+import { useEffect, useState, lazy } from "react";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { Box } from "@mui/material";
@@ -7,16 +7,17 @@ import { Box } from "@mui/material";
 import getCurrentUser from "../redux/operations/getCurrentUser";
 
 import SharedLayout from "./SharedLayout";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import Main from "../pages/Main";
-import Details from "../pages/Details";
-import Home from "../pages/Home";
-import Cart from "../pages/Cart";
-
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 import Loader from "./Loader";
+import NotFound from "../pages/NotFound";
+
+const Register = lazy(() => import("../pages/Register"));
+const Login = lazy(() => import("../pages/Login"));
+const Main = lazy(() => import("../pages/Main"));
+const Details = lazy(() => import("../pages/Details"));
+const Home = lazy(() => import("../pages/Home"));
+const Cart = lazy(() => import("../pages/Cart"));
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +88,15 @@ function App() {
           element={
             <PrivateRoute>
               <Cart />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="*"
+          element={
+            <PrivateRoute>
+              <NotFound />
             </PrivateRoute>
           }
         />

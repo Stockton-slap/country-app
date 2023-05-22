@@ -62,7 +62,7 @@ const Countries = () => {
 
   return (
     <>
-      <Filter />
+      {!isLoading && <Filter />}
       {isLoading ? (
         <Loader />
       ) : currentCountries.length === 0 ? (

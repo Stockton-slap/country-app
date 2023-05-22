@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 import { selectIsLoggedIn } from "../../redux/selectors";
@@ -8,6 +9,7 @@ import { Box, Container } from "@mui/material";
 import LoggedInBar from "../LoggedInBar";
 import LoggedOutBar from "../LoggedOutBar";
 import Logo from "../Logo";
+import Loader from "../Loader";
 
 const SharedLayout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -30,7 +32,9 @@ const SharedLayout = () => {
         <Logo />
         {isLoggedIn ? <LoggedInBar /> : <LoggedOutBar />}
       </Box>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };
