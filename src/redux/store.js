@@ -15,17 +15,25 @@ import storage from "redux-persist/lib/storage";
 import { authReducer } from "./slices/authSlice";
 import { countryReducer } from "./slices/countrySlice";
 import { filterReducer } from "./slices/filterSlice";
+import { cartReducer } from "./slices/cartSlice";
 
-const persistConfig = {
+const persistAuthConfig = {
   key: "auth",
   storage,
   whitelist: ["token"],
 };
 
+const persistCartConfig = {
+  key: "cart",
+  storage,
+  whitelist: ["item", "countries"],
+};
+
 const rootReducer = combineReducers({
-  auth: persistReducer(persistConfig, authReducer),
+  auth: persistReducer(persistAuthConfig, authReducer),
   countries: countryReducer,
   filter: filterReducer,
+  cart: persistReducer(persistCartConfig, cartReducer),
 });
 
 const store = configureStore({

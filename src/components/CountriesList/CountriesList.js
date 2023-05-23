@@ -14,11 +14,12 @@ import getCountries from "../../redux/operations/getCountries";
 import CountriesItem from "../CountriesItem";
 import Filter from "../Filter";
 
-import { Box, List } from "@mui/material";
+import { Box } from "@mui/material";
 import Loader from "../Loader";
 
 import CountryNotFound from "../CountryNotFound";
 import Pagination from "../Pagination";
+import { CountriesList, SectionContainer } from "../../utils/commonStyles";
 
 const Countries = () => {
   const [countriesOffset, setCountriesOffset] = useState(0);
@@ -63,7 +64,7 @@ const Countries = () => {
   };
 
   return (
-    <>
+    <SectionContainer>
       <Filter />
       {isLoading && !isError ? (
         <Box>
@@ -72,24 +73,16 @@ const Countries = () => {
       ) : currentCountries.length === 0 ? (
         <CountryNotFound />
       ) : (
-        <section style={{ padding: "0 50px", position: "relative" }}>
-          <List
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              flexWrap: "wrap",
-              gap: "40px",
-              mb: "80px",
-            }}
-          >
+        <>
+          <CountriesList>
             {currentCountries.map((country) => (
               <CountriesItem country={country} key={uuidv4()} />
             ))}
-          </List>
+          </CountriesList>
           <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
-        </section>
+        </>
       )}
-    </>
+    </SectionContainer>
   );
 };
 

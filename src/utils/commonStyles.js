@@ -1,9 +1,9 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, List } from "@mui/material";
 import { Field, Form } from "formik";
 import styled from "styled-components";
 import flagsImage from "../images/flags.jpg";
 
-export const Container = styled(Box)`
+export const AuthContainer = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,4 +57,20 @@ export const AuthWrapper = styled(Form)`
     filter: blur(5px);
     z-index: -1;
   }
+`;
+
+export const CountriesList = styled(List)`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 80px;
+`;
+
+export const SectionContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0 50px;
+  position: relative;
 `;

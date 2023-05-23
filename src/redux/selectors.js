@@ -12,3 +12,6 @@ export const selectAreCountriesLoading = (state) => state.countries.isLoading;
 export const selectIsCountriesError = (state) => state.countries.isError;
 
 export const selectFilter = (state) => state.filter;
+
+export const selectCartItem = (state) => state.cart.item;
+export const selectCartCountries = (state) => state.cart.countries;

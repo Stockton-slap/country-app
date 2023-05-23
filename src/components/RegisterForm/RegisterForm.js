@@ -7,7 +7,7 @@ import register from "../../redux/operations/register";
 import { useDispatch, useSelector } from "react-redux";
 import {
   AuthWrapper,
-  Container,
+  AuthContainer,
   FormValue,
   SubmitButton,
 } from "../../utils/commonStyles";
@@ -29,7 +29,7 @@ const RegisterForm = () => {
       }}
     >
       <AuthWrapper>
-        <Container sx={{ margin: 0, backgroundColor: "#fff" }}>
+        <AuthContainer sx={{ margin: 0, backgroundColor: "#fff" }}>
           <Typography sx={{ fontSize: 32, mt: "20px", mb: "20px" }}>
             REGISTER
           </Typography>
@@ -70,7 +70,7 @@ const RegisterForm = () => {
           <SubmitButton type="submit" variant="contained" sx={{ mb: "50px" }}>
             {isLoading && !isError ? <Loader /> : "Submit"}
           </SubmitButton>
-        </Container>
+        </AuthContainer>
       </AuthWrapper>
     </Formik>
   );

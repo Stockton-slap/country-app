@@ -6,12 +6,17 @@ import { Badge, Box, Button } from "@mui/material";
 
 import logout from "../../redux/operations/logout";
 import Loader from "../Loader";
-import { selectIsAuthError, selectIsAuthLoading } from "../../redux/selectors";
+import {
+  selectCartItem,
+  selectIsAuthError,
+  selectIsAuthLoading,
+} from "../../redux/selectors";
 
 const LoggedInBar = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsAuthLoading);
   const isError = useSelector(selectIsAuthError);
+  const item = useSelector(selectCartItem);
 
   const handleLogoutClick = () => {
     dispatch(logout());
@@ -38,7 +43,7 @@ const LoggedInBar = () => {
               color: "white",
             }}
           >
-            0
+            {item}
           </Badge>
         </Link>
       </Box>

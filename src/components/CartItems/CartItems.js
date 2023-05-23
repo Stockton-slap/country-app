@@ -1,18 +1,24 @@
-import { Box } from "@mui/material";
 import BackButton from "../BackButton";
+import { useSelector } from "react-redux";
+import { selectCartCountries } from "../../redux/selectors";
+import CountriesItem from "../CountriesItem";
+import { v4 as uuidv4 } from "uuid";
+import { CountriesList, SectionContainer } from "../../utils/commonStyles";
 
 const CartItems = () => {
+  const cartCountries = useSelector(selectCartCountries);
+  console.log(cartCountries);
   return (
-    <Box
-      sx={{
-        padding: "0 150px",
-        display: "flex",
-        flexDirection: "column",
-        margin: "0 auto",
-      }}
-    >
+    <SectionContainer>
       <BackButton />
-    </Box>
+      <div style={{ position: "relative" }}>
+        <CountriesList>
+          {cartCountries.map((country) => (
+            <CountriesItem country={country} key={uuidv4()} />
+          ))}
+        </CountriesList>
+      </div>
+    </SectionContainer>
   );
 };
 

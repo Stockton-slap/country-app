@@ -7,7 +7,7 @@ import login from "../../redux/operations/login";
 import { useDispatch, useSelector } from "react-redux";
 import {
   AuthWrapper,
-  Container,
+  AuthContainer,
   FormValue,
   SubmitButton,
 } from "../../utils/commonStyles";
@@ -29,7 +29,7 @@ const LoginForm = () => {
       }}
     >
       <AuthWrapper>
-        <Container sx={{ margin: 0, backgroundColor: "#fff" }}>
+        <AuthContainer sx={{ margin: 0, backgroundColor: "#fff" }}>
           <Typography sx={{ fontSize: 32, mt: "20px", mb: "20px" }}>
             LOG IN
           </Typography>
@@ -59,7 +59,7 @@ const LoginForm = () => {
           <SubmitButton type="submit" variant="contained" sx={{ mb: "50px" }}>
             {isLoading && !isError ? <Loader /> : "Submit"}
           </SubmitButton>
-        </Container>
+        </AuthContainer>
       </AuthWrapper>
     </Formik>
   );

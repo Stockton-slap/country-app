@@ -12,7 +12,7 @@ const getCountries = createAsyncThunk(
       const response = await instanceCountries.get(
         "/all?fields=name,borders,capital,continents,currencies,flags,languages,population,area"
       );
-      console.log(response.data);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

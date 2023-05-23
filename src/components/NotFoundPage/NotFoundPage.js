@@ -5,18 +5,12 @@ import { Box, Typography } from "@mui/material";
 
 import notFoundImage from "../../images/404.png";
 import BackButton from "../BackButton";
+import { SectionContainer } from "../../utils/commonStyles";
 
 const NotFoundPage = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
-    <Box
-      sx={{
-        padding: "0 150px",
-        display: "flex",
-        flexDirection: "column",
-        margin: "0 auto",
-      }}
-    >
+    <SectionContainer>
       <BackButton />
       <Box
         sx={{
@@ -46,7 +40,7 @@ const NotFoundPage = () => {
           </Link>
         </Typography>
       </Box>
-    </Box>
+    </SectionContainer>
   );
 };
 

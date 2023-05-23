@@ -14,7 +14,7 @@ import {
 
 import { Box, List, ListItem, ListItemButton } from "@mui/material";
 
-import { Text, Title } from "../../utils/commonStyles";
+import { SectionContainer, Text, Title } from "../../utils/commonStyles";
 import Loader from "../Loader";
 import BackButton from "../BackButton";
 
@@ -54,14 +54,7 @@ const CountryDetails = () => {
   return isLoading && !isError ? (
     <Loader />
   ) : (
-    <Box
-      sx={{
-        padding: "0 150px",
-        display: "flex",
-        flexDirection: "column",
-        margin: "0 auto",
-      }}
-    >
+    <SectionContainer>
       <BackButton />
 
       <Box
@@ -96,7 +89,7 @@ const CountryDetails = () => {
             <Box>
               <Text>
                 <b>Total area: </b>
-                {area.toLocaleString()}
+                {area.toLocaleString() + "km\u00B2"}
               </Text>
               <Text>
                 <b>Currencies: </b>
@@ -143,7 +136,7 @@ const CountryDetails = () => {
           </List>
         </Box>
       </Box>
-    </Box>
+    </SectionContainer>
   );
 };
 
