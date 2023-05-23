@@ -9,6 +9,7 @@ import getCountryDetails from "../../redux/operations/getCountryDetails";
 import {
   selectAreCountriesLoading,
   selectCurrentCountry,
+  selectIsCountriesError,
 } from "../../redux/selectors";
 
 import { Box, List, ListItem, ListItemButton } from "@mui/material";
@@ -22,6 +23,7 @@ const CountryDetails = () => {
   const dispatch = useDispatch();
   const currentCountry = useSelector(selectCurrentCountry);
   const isLoading = useSelector(selectAreCountriesLoading);
+  const isError = useSelector(selectIsCountriesError);
 
   useEffect(() => {
     dispatch(getCountryDetails(countryId));
@@ -49,7 +51,7 @@ const CountryDetails = () => {
     ? Object.values(currencies).map((currency) => currency.name)
     : "-";
 
-  return isLoading ? (
+  return isLoading && !isError ? (
     <Loader />
   ) : (
     <Box

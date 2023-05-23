@@ -7,13 +7,14 @@ import {
   selectCountries,
   selectAreCountriesLoading,
   selectFilter,
+  selectIsCountriesError,
 } from "../../redux/selectors";
 import getCountries from "../../redux/operations/getCountries";
 
 import CountriesItem from "../CountriesItem";
 import Filter from "../Filter";
 
-import { List } from "@mui/material";
+import { Box, List } from "@mui/material";
 import Loader from "../Loader";
 
 import CountryNotFound from "../CountryNotFound";
@@ -24,6 +25,7 @@ const Countries = () => {
   const dispatch = useDispatch();
   const countries = useSelector(selectCountries);
   const isLoading = useSelector(selectAreCountriesLoading);
+  const isError = useSelector(selectIsCountriesError);
   const filter = useSelector(selectFilter);
   const trimmedFilter = filter.trim();
   const countriesPerPage = 8;
@@ -62,9 +64,11 @@ const Countries = () => {
 
   return (
     <>
-      {!isLoading && <Filter />}
-      {isLoading ? (
-        <Loader />
+      <Filter />
+      {isLoading && !isError ? (
+        <Box>
+          <Loader />
+        </Box>
       ) : currentCountries.length === 0 ? (
         <CountryNotFound />
       ) : (

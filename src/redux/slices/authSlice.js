@@ -11,7 +11,17 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
-  // isError: false,
+  isError: false,
+};
+
+const handleError = (state, action) => {
+  state.isLoading = false;
+  state.isError = action.payload;
+  toast.error("Oops, something went wrong.");
+};
+
+const handlePending = (state) => {
+  state.isLoading = true;
 };
 
 const authSlice = createSlice({
@@ -23,53 +33,37 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.isError = false;
     },
-    [register.pending](state, action) {
-      state.isLoading = true;
-    },
-    [register.rejected](state, action) {
-      state.isLoading = false;
-      toast.error("Oops, something went wrong.");
-    },
-
     [login.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
       state.isLoading = false;
+      state.isError = false;
     },
-    [login.pending](state, action) {
-      state.isLoading = true;
-    },
-    [login.rejected](state, action) {
-      state.isLoading = false;
-      toast.error("Oops, something went wrong.");
-    },
-
     [getCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
+      state.isError = false;
     },
-    [getCurrentUser.pending](state, action) {},
-    [getCurrentUser.rejected](state, action) {
-      state.isLoggedIn = false;
-    },
-
-    [logout.fulfilled](state, action) {
+    [logout.fulfilled](state) {
       state.user.name = "";
       state.user.email = "";
       state.user.password = "";
       state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
+      state.isError = false;
     },
-    [logout.pending](state, action) {
-      state.isLoading = true;
-    },
-    [logout.rejected](state, action) {
-      state.isLoading = false;
-      toast.error("Oops, something went wrong.");
-    },
+
+    [register.pending]: handlePending,
+    [login.pending]: handlePending,
+    [logout.pending]: handlePending,
+
+    [register.rejected]: handleError,
+    [login.rejected]: handleError,
+    [logout.rejected]: handleError,
   },
 });
 

@@ -1,12 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import getCountries from "../operations/getCountries";
 import getCountryDetails from "../operations/getCountryDetails";
+import { toast } from "react-toastify";
 
 const initialState = {
   countries: [],
   currentCountry: "",
   isLoading: false,
-  // isError: false,
+  isError: false,
+};
+
+const handleError = (state, action) => {
+  state.isLoading = false;
+  state.isError = action.payload;
+  toast.error("Oops, something went wrong.");
+};
+
+const handlePending = (state) => {
+  state.isLoading = true;
 };
 
 const countrySlice = createSlice({
@@ -16,24 +27,19 @@ const countrySlice = createSlice({
     [getCountries.fulfilled](state, action) {
       state.countries = action.payload;
       state.isLoading = false;
+      state.isError = false;
     },
-    [getCountries.pending](state, action) {
-      state.isLoading = true;
-    },
-    [getCountries.rejected](state, action) {
-      state.isLoading = false;
-    },
-
     [getCountryDetails.fulfilled](state, action) {
       state.currentCountry = action.payload;
       state.isLoading = false;
+      state.isError = false;
     },
-    [getCountryDetails.pending](state, action) {
-      state.isLoading = true;
-    },
-    [getCountryDetails.rejected](state, action) {
-      state.isLoading = false;
-    },
+
+    [getCountries.pending]: handlePending,
+    [getCountryDetails.pending]: handlePending,
+
+    [getCountries.rejected]: handleError,
+    [getCountryDetails.rejected]: handleError,
   },
 });
 

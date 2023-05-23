@@ -1,18 +1,24 @@
 import React from "react";
-import { ErrorMessage, Form, Formik } from "formik";
+import { ErrorMessage, Formik } from "formik";
 
 import { loginValidationSchema } from "../../utils/validationSchema";
 
 import login from "../../redux/operations/login";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, FormValue, SubmitButton } from "../../utils/commonStyles";
+import {
+  AuthWrapper,
+  Container,
+  FormValue,
+  SubmitButton,
+} from "../../utils/commonStyles";
 import { FormLabel, Typography } from "@mui/material";
 import Loader from "../Loader";
-import { selectIsAuthLoading } from "../../redux/selectors";
+import { selectIsAuthError, selectIsAuthLoading } from "../../redux/selectors";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsAuthLoading);
+  const isError = useSelector(selectIsAuthError);
 
   return (
     <Formik
@@ -22,8 +28,8 @@ const LoginForm = () => {
         dispatch(login(values));
       }}
     >
-      <Form>
-        <Container>
+      <AuthWrapper>
+        <Container sx={{ margin: 0, backgroundColor: "#fff" }}>
           <Typography sx={{ fontSize: 32, mt: "20px", mb: "20px" }}>
             LOG IN
           </Typography>
@@ -50,11 +56,11 @@ const LoginForm = () => {
           />
           <ErrorMessage name="password" />
 
-          <SubmitButton type="submit" variant="contained">
-            {isLoading ? <Loader /> : "Submit"}
+          <SubmitButton type="submit" variant="contained" sx={{ mb: "50px" }}>
+            {isLoading && !isError ? <Loader /> : "Submit"}
           </SubmitButton>
         </Container>
-      </Form>
+      </AuthWrapper>
     </Formik>
   );
 };

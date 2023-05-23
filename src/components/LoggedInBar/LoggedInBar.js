@@ -1,13 +1,17 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { AddShoppingCart } from "@mui/icons-material";
 import { Badge, Box, Button } from "@mui/material";
 
 import logout from "../../redux/operations/logout";
+import Loader from "../Loader";
+import { selectIsAuthError, selectIsAuthLoading } from "../../redux/selectors";
 
 const LoggedInBar = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsAuthLoading);
+  const isError = useSelector(selectIsAuthError);
 
   const handleLogoutClick = () => {
     dispatch(logout());
@@ -38,8 +42,14 @@ const LoggedInBar = () => {
           </Badge>
         </Link>
       </Box>
-      <Button variant="contained" size="medium" onClick={handleLogoutClick}>
-        Log Out
+
+      <Button
+        variant="contained"
+        size="medium"
+        onClick={handleLogoutClick}
+        sx={{ width: "150px" }}
+      >
+        {isLoading && !isError ? <Loader width="25px" /> : "Log Out"}
       </Button>
     </Box>
   );
