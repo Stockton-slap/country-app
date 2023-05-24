@@ -15,3 +15,4 @@ export const selectFilter = (state) => state.filter;
 
 export const selectCartItem = (state) => state.cart.item;
 export const selectCartCountries = (state) => state.cart.countries;
+export const selectButtonSwap = (state) => state.cart.buttonSwap;

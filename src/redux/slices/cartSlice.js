@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { item: 0, countries: [] };
+const initialState = { item: 0, countries: [], buttonSwap: true };
 
 const cartSlice = createSlice({
   name: "cart",
@@ -10,12 +10,16 @@ const cartSlice = createSlice({
       state.item = action.payload;
     },
 
-    addCountry(state, action) {
+    favoriteCountry(state, action) {
       state.countries.push(action.payload);
+    },
+
+    switchButton(state, action) {
+      state.buttonSwap = action.payload;
     },
   },
 });
 
-export const { addCount, addCountry } = cartSlice.actions;
+export const { addCount, favoriteCountry, switchButton } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;

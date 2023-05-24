@@ -89,7 +89,7 @@ const CountryDetails = () => {
             <Box>
               <Text>
                 <b>Total area: </b>
-                {area.toLocaleString() + "km\u00B2"}
+                {area.toLocaleString() + " km\u00B2"}
               </Text>
               <Text>
                 <b>Currencies: </b>

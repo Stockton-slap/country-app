@@ -4,10 +4,20 @@ import styled from "styled-components";
 
 import { Box, Button } from "@mui/material";
 import { Text, Title } from "../../utils/commonStyles";
-import { ShoppingCart } from "@mui/icons-material";
+import { DeleteForever, ShoppingCart } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { addCount, addCountry } from "../../redux/slices/cartSlice";
-import { selectCartItem } from "../../redux/selectors";
+import {
+  addCount,
+  favoriteCountry,
+  switchButton,
+} from "../../redux/slices/cartSlice";
+import {
+  selectButtonSwap,
+  selectCartCountries,
+  selectCartItem,
+} from "../../redux/selectors";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Card = styled.li`
   background-color: #fff;
@@ -34,6 +44,12 @@ const CountriesItem = ({ country }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const item = useSelector(selectCartItem);
+  const buttonSwap = useSelector(selectButtonSwap);
+  const cartCountries = useSelector(selectCartCountries);
+
+  useEffect(() => {
+    dispatch(switchButton(true));
+  }, [dispatch]);
 
   if (!country) {
     return null;
@@ -47,10 +63,17 @@ const CountriesItem = ({ country }) => {
     population,
   } = country;
 
-  const handleClick = () => {
+  const handleAddClick = () => {
+    // if (cartCountries.includes(country)) {
+    //   toast.warning("This country is already in the cart.");
+    //   return;
+    // }
+
     dispatch(addCount(item + 1));
-    dispatch(addCountry(country));
+    dispatch(favoriteCountry(country));
   };
+
+  const handleDeleteClick = () => {};
 
   return (
     <Card disablePadding={true}>
@@ -80,10 +103,15 @@ const CountriesItem = ({ country }) => {
       <Button
         variant="contained"
         size="medium"
-        sx={{ position: "absolute", bottom: 0, right: 0 }}
-        onClick={handleClick}
+        sx={{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          backgroundColor: !buttonSwap && "red",
+        }}
+        onClick={buttonSwap ? handleAddClick : handleDeleteClick}
       >
-        <ShoppingCart />
+        {buttonSwap ? <ShoppingCart /> : <DeleteForever />}
       </Button>
     </Card>
   );
