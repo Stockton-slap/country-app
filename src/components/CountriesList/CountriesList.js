@@ -53,7 +53,7 @@ const Countries = () => {
   const pageCount = Math.ceil(filteredCountries.length / countriesPerPage);
 
   const handlePageClick = (e) => {
-    const pageNumber = e.selected + 1;
+    const pageNumber = e.selected;
 
     const newCountriesOffset =
       (pageNumber * countriesPerPage) % filteredCountries.length;
