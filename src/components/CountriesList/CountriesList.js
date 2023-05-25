@@ -53,7 +53,7 @@ const Countries = () => {
   const pageCount = Math.ceil(filteredCountries.length / countriesPerPage);
 
   const handlePageClick = (e) => {
-    const pageNumber = e.selected;
+    const pageNumber = e.selected + 1;
 
     const newCountriesOffset =
       (pageNumber * countriesPerPage) % filteredCountries.length;
@@ -72,7 +72,7 @@ const Countries = () => {
         <CountryNotFound />
       ) : (
         <>
-          <CountriesList>
+          <CountriesList disablePadding={true}>
             {currentCountries.map((country) => (
               <CountriesItem country={country} key={country.name.common} />
             ))}

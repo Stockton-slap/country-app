@@ -19,7 +19,7 @@ root.render(
       <BrowserRouter>
         <Provider store={store}>
           <App />
-          <ToastContainer />
+          <ToastContainer position="top-center" theme="colored" />
         </Provider>
         <GlobalStyle />
       </BrowserRouter>

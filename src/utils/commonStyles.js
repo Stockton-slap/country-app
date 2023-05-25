@@ -64,7 +64,6 @@ export const CountriesList = styled(List)`
   justify-content: center;
   flex-wrap: wrap;
   gap: 40px;
-  margin-bottom: 80px;
 `;
 
 export const SectionContainer = styled(Box)`
