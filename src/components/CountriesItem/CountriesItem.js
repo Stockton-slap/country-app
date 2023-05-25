@@ -8,6 +8,7 @@ import { DeleteForever, ShoppingCart } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCount,
+  deleteCountry,
   favoriteCountry,
   switchButton,
 } from "../../redux/slices/cartSlice";
@@ -18,6 +19,7 @@ import {
 } from "../../redux/selectors";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import isCountryAlreadyInCart from "../../utils/isCountryAlreadyInCart";
 
 const Card = styled.li`
   background-color: #fff;
@@ -63,17 +65,24 @@ const CountriesItem = ({ country }) => {
     population,
   } = country;
 
+  const isCountryInCart = isCountryAlreadyInCart(cartCountries, common);
+
   const handleAddClick = () => {
-    // if (cartCountries.includes(country)) {
-    //   toast.warning("This country is already in the cart.");
-    //   return;
-    // }
+    if (isCountryInCart) {
+      toast.warning("This country is already in the cart.");
+      return;
+    }
 
     dispatch(addCount(item + 1));
     dispatch(favoriteCountry(country));
+    toast.success("The country has been added to the cart.");
   };
 
-  const handleDeleteClick = () => {};
+  const handleDeleteClick = () => {
+    dispatch(deleteCountry(country.name.common));
+    dispatch(addCount(item - 1));
+    toast.success("The country has been deleted from the cart.");
+  };
 
   return (
     <Card disablePadding={true}>
@@ -105,8 +114,8 @@ const CountriesItem = ({ country }) => {
         size="medium"
         sx={{
           position: "absolute",
-          bottom: 0,
-          right: 0,
+          bottom: 20,
+          right: 20,
           backgroundColor: !buttonSwap && "red",
         }}
         onClick={buttonSwap ? handleAddClick : handleDeleteClick}

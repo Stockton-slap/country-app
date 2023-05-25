@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { v4 as uuidv4 } from "uuid";
-
 import {
   selectCountries,
   selectAreCountriesLoading,
@@ -76,7 +74,7 @@ const Countries = () => {
         <>
           <CountriesList>
             {currentCountries.map((country) => (
-              <CountriesItem country={country} key={uuidv4()} />
+              <CountriesItem country={country} key={country.name.common} />
             ))}
           </CountriesList>
           <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
